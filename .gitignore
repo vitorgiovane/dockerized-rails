@@ -4,6 +4,13 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+/docker/postgres/data
+/docker/redis/data
+
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+.env
+
 # Ignore bundler config.
 /.bundle
 
@@ -28,8 +35,6 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
-
-/public/assets
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

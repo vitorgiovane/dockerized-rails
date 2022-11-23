@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: "${PROJECT_PREFIX}-postgres"
+    build:
+      context: .
+      dockerfile: ./docker/postgres/Dockerfile
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "${DATABASE_EXTERNAL_PORT}:5432"
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+
+  redis:
+    container_name: "${PROJECT_PREFIX}-redis"
+    build:
+      context: .
+      dockerfile: ./docker/redis/Dockerfile
+    volumes:
+      - ./docker/redis/data:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+
+  ruby:
+    container_name: "${PROJECT_PREFIX}-ruby"
+    build:
+      context: .
+      dockerfile: ./docker/ruby/Dockerfile
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: "${GROUP_ID:-1000}"
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/atmosphere
+    ports:
+      - "${API_EXTERNAL_PORT}:3000"
+    depends_on:
+      - postgres
