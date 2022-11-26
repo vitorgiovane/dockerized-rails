@@ -62,6 +62,10 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
+  # Add RSpec as a test framework
+  gem 'rspec-rails'
+  # TODO configure RSpec https://www.youtube.com/watch?v=oIN1EIrebVA&t=1337s
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem 'rack-mini-profiler'
 
