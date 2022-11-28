@@ -56,6 +56,9 @@ group :development, :test do
 
   # See https://github.com/deivid-rodriguez/pry-byebug
   gem 'pry-byebug'
+
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
 
 group :development do
