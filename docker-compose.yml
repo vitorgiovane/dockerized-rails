@@ -25,6 +25,13 @@ services:
     ports:
       - "${REDIS_PORT}:6379"
 
+  mailcatcher:
+    container_name: "${PROJECT_PREFIX}-mailcatcher"
+    image: dockage/mailcatcher
+    ports:
+      - "${MAIL_CATCHER_PANEL_PORT}:1080"
+      - "${MAIL_CATCHER_SMTP_PORT}:1025"
+
   ruby:
     container_name: "${PROJECT_PREFIX}-ruby"
     build:
